@@ -1,0 +1,194 @@
+%使用xelatex编译
+%-------导言区----------------
+\documentclass[UTF8,space=auto]{ctexart} %UTF8编码，设置其处理空格的方式为auto
+\usepackage[a4paper]{geometry} %设置纸张为A4大小
+\usepackage{hyperref} %可使用超链接(含链接的跳转和一些命令)
+\usepackage{amsmath} %最常用的数学宏包
+\usepackage{amssymb} %包含更多的数学符号
+\usepackage{lipsum} %英语假文宏包
+\usepackage{ifthen} %使用\ifthenelse命令
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr} %设置页眉页脚的宏包
+
+%超链接设置(依赖于hyperref宏包)
+\hypersetup{
+	pdftitle={这是展示在 PDF 信息中的标题},
+	pdfauthor={王美庭},
+	colorlinks=true,
+	pdfsubject={这是 PDF 的主题，类似于摘要。},
+	pdfkeywords={关键词1, 关键词2, ...},
+	urlcolor={[RGB]{25, 128, 230}},%设置网页超链接的颜色
+	linkcolor={[RGB]{25, 128, 230}},%设置目录、脚注、ref等超链接的颜色
+	citecolor={[RGB]{25, 128, 230}},%设置cite超链接的颜色
+}
+
+%ctex宏包的设置
+\ctexset{
+	section = {
+		format+ = {\raggedright} %节标题左对齐
+	}
+}
+
+
+%页眉页脚的设置 (依赖于fancyhdr宏包)
+\pagestyle{fancy} %使用fancy风格
+\fancyhf{} %清除所有的页眉页脚
+\fancyhead[L]{\slshape\leftmark} %页眉RE、LO位置章标题
+\fancyhead[R]{\slshape\rightmark} %页眉LE、RO位置节标题
+\fancyfoot[C]{\thepage} %页脚居中页码
+\renewcommand{\headrulewidth}{0.4pt} %重定义页眉线宽度
+%\renewcommand{\footrulewidth}{0.4pt} %重定义页脚线宽度
+
+\input{Redefinition.tex} %导入定理类环境重定义文件(需要amssymb、ifthen宏包)
+
+%标题页设置
+\title{
+	article 文档类中定理类环境的重定义
+}
+\author{王美庭\thanks{王美庭，暨南大学经济与社会研究院，Email: wangmeiting92@gmail.com}}
+\date{\today}
+
+
+
+
+%---------正文区-----------------
+\begin{document}
+\maketitle
+
+\section{定义环境}
+
+\lipsum[1][1-3]
+
+\begin{dfn}\label{dfn:aa}%
+	这是一个定义环境。This is a dfn env.
+\end{dfn}
+
+\begin{dfn}
+	If 这是一个定义环境。This is a dfn env.
+\end{dfn}
+
+\begin{dfn}[xx 名词]
+	这是一个定义环境。This is a dfn env.
+\end{dfn}
+
+\begin{dfn}[xx 名词]\label{dfn:bb}%
+	If 这是一个定义环境。This is a dfn env.
+\end{dfn}
+
+\lipsum[1][1-3]
+
+这是定义 \ref{dfn:aa}，这是定义 \ref{dfn:bb}。
+
+
+\section{引理环境}
+
+\lipsum[1][1-3]
+
+\begin{lemma}\label{dfn:cc}%
+	这是一个引理环境。This is a lemma env.
+\end{lemma}
+
+\begin{lemma}
+	If 这是一个引理环境。This is a lemma env.
+\end{lemma}
+
+\begin{lemma}[xx 引理]
+	这是一个引理环境。This is a lemma env.
+\end{lemma}
+
+\begin{lemma}[xx 引理]\label{dfn:dd}%
+	If 这是一个引理环境。This is a lemma env.
+\end{lemma}
+
+\lipsum[1][1-3]
+
+这是引理 \ref{dfn:cc}，这是引理 \ref{dfn:dd}。
+
+
+\section{定理环境}
+
+\lipsum[1][1-3]
+
+\begin{thm}\label{dfn:ee}%
+	这是一个定理环境。This is a thm env.
+\end{thm}
+
+\begin{thm}
+	If 这是一个定理环境。This is a thm env.
+\end{thm}
+
+\begin{thm}[xx 定理]
+	这是一个定理环境。This is a thm env.
+\end{thm}
+
+\begin{thm}[xx 定理]\label{dfn:ff}%
+	If 这是一个定理环境。This is a thm env.
+\end{thm}
+
+\lipsum[1][1-3]
+
+这是定理 \ref{dfn:ee}，这是定理 \ref{dfn:ff}。
+
+
+\section{推论环境}
+
+\lipsum[1][1-3]
+
+\begin{coro}\label{dfn:gg}%
+	这是一个推论环境。This is a coro env.
+\end{coro}
+
+\begin{coro}
+	If 这是一个推论环境。This is a coro env.
+\end{coro}
+
+\begin{coro}[xx 推论]
+	这是一个推论环境。This is a coro env.
+\end{coro}
+
+\begin{coro}[xx 推论]\label{dfn:hh}%
+	If 这是一个推论环境。This is a coro env.
+\end{coro}
+
+\lipsum[1][1-3]
+
+这是推论 \ref{dfn:gg}，这是推论 \ref{dfn:hh}。
+
+
+\section{证明环境}
+\lipsum[1][1-3]
+\begin{proof}
+	这是一个证明环境。This is a proof env.
+\end{proof}
+
+\begin{proof}[xx 定律]
+	这是一个证明环境。This is a proof env.
+\end{proof}
+
+\lipsum[1][1-3]
+
+
+\section{例环境}
+\lipsum[1][1-3]
+
+\begin{exam}\label{exam:aa}%
+	这是一个例环境。This is a exam env.
+\end{exam}
+
+\begin{exam}
+	If 这是一个例环境。This is a exam env.
+\end{exam}
+
+\begin{exam}[勾股定理的应用]
+	这是一个例环境。This is a exam env.
+\end{exam}
+
+\begin{exam}[勾股定理的应用]\label{exam:bb}%
+	If 这是一个例环境。This is a exam env.
+\end{exam}
+
+\lipsum[1][1-3]
+
+这是例 \ref{exam:aa}，这是例 \ref{exam:bb}。
+
+\end{document}

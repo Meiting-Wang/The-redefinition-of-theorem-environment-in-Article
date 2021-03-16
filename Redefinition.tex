@@ -1,0 +1,93 @@
+%--------------------定理类环境重定义-------------------
+%-设置计数器
+\newcounter{mycntthm} %设置新的计数器
+\newcounter{mycntexam}
+\setcounter{mycntthm}{0} %设定计数器默认值
+\setcounter{mycntexam}{0}
+
+%-开关设置
+\newcommand{\thmseriesnamestyle}{Chinese} % Chinese 表示设置定理类名称为中文，English 表示设置定理类名称为英文
+\newcommand{\thmseriesnumbering}{true} % true 表示对定理类环境进行编号，false 表示不对定理类环境进行编号
+
+\ifthenelse{\equal{\thmseriesnamestyle}{Chinese}}{%
+	\newcommand{\dfnname}{定义}
+	\newcommand{\lemmaname}{引理}
+	\newcommand{\thmname}{定理}
+	\newcommand{\coroname}{推论}
+	\renewcommand{\proofname}{证明}
+	\newcommand{\examname}{例}
+}%
+{%
+	\newcommand{\dfnname}{Definition}
+	\newcommand{\lemmaname}{Lemma}
+	\newcommand{\thmname}{Theorem}
+	\newcommand{\coroname}{Corollary}
+	\renewcommand{\proofname}{Proof}
+	\newcommand{\examname}{Example}
+}
+
+%-自定义定理类环境
+\newenvironment{dfn}[1][]%定义环境
+{%
+	\par%
+	\bfseries%
+	\dfnname%
+	\ifthenelse{\equal{\thmseriesnumbering}{true}}{\refstepcounter{mycntthm}~\themycntthm}{}%
+	\ifthenelse{\equal{#1}{}}{~~}{~(#1)~~}%
+	\mdseries\itshape\color{black}%
+}%
+{\par}
+
+\newenvironment{lemma}[1][]%引理环境
+{%
+	\par%
+	\bfseries%
+	\lemmaname%
+	\ifthenelse{\equal{\thmseriesnumbering}{true}}{\refstepcounter{mycntthm}~\themycntthm}{}%
+	\ifthenelse{\equal{#1}{}}{~~}{~(#1)~~}%
+	\mdseries\itshape\color{black}%
+}%
+{\par}
+
+\newenvironment{thm}[1][]%定理环境
+{%
+	\par%
+	\bfseries%
+	\thmname%
+	\ifthenelse{\equal{\thmseriesnumbering}{true}}{\refstepcounter{mycntthm}~\themycntthm}{}%
+	\ifthenelse{\equal{#1}{}}{~~}{~(#1)~~}%
+	\mdseries\itshape\color{black}%
+}%
+{\par}
+
+\newenvironment{coro}[1][]%推论环境
+{%
+	\par%
+	\bfseries%
+	\coroname%
+	\ifthenelse{\equal{\thmseriesnumbering}{true}}{\refstepcounter{mycntthm}~\themycntthm}{}%
+	\ifthenelse{\equal{#1}{}}{~~}{~(#1)~~}%
+	\mdseries\itshape\color{black}%
+}%
+{\par}
+
+\newenvironment{proof}[1][]%证明环境
+{%
+	\par%
+	\bfseries%
+	\proofname%
+	\ifthenelse{\equal{#1}{}}{~~}{~(#1)~~}%
+	\normalfont\color{black}%
+}%
+{\vspace{-\baselineskip}\hfill$\blacksquare$\par\vspace{\baselineskip}}
+
+\newenvironment{exam}[1][]%例环境
+{%
+	\par%
+	\bfseries%
+	\examname%
+	\ifthenelse{\equal{\thmseriesnumbering}{true}}{\refstepcounter{mycntexam}~\themycntexam}{}%
+	\ifthenelse{\equal{#1}{}}{~~}{~(#1)~~}%
+	\mdseries\itshape\color{black}%
+}%
+{\par}
